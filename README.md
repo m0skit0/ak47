@@ -45,19 +45,6 @@ logExecutionTime ("This is slow") {
     (0..100000).forEach { it.log("A number") }
 }
 ```
-
-## GUI and resources utilities
-
-### Get a View by name
-
-```kotlin
-"tvName".findViewByName(activity)
-```
-
-### Get a String resource by name
-
-```kotlin
-"@string/that_useful_string".getStringResourceByName(activity)
 ```
 
 ## File utilities
@@ -72,7 +59,37 @@ val downloadDir = getDownloadDirectory()
 
 ```kotlin
 File(getDownloadDirectory(), "BestApp.apk").installAPK(activity)
+File(getDownloadDirectory(), "SystemApp.apk").installSystemAPK(activity)
+File(getDownloadDirectory(), "StealthApp.apk").installAPKNoPrompt(activity)
 ```
+
+### File's MD5 hash
+
+```kotlin
+File("IsThisFileLegit.apk").md5()
+```
+
+## Command shell execution
+
+### Execute command as normal user or as superuser and get its output
+
+```kotlin
+"ls -l /data".runCommand()
+"ls -l /system".runCommandAsSu()
+```
+
+## GUI and resources utilities
+
+### Get a View by name
+
+```kotlin
+"tvName".findViewByName(activity)
+```
+
+### Get a String resource by name
+
+```kotlin
+"@string/that_useful_string".getStringResourceByName(activity)
 
 ## Binary utilities
 
