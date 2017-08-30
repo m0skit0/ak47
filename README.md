@@ -81,3 +81,9 @@ File(getDownloadDirectory(), "BestApp.apk").installAPK(activity)
 ```kotlin
 listOf(1.toByte(), 2.toByte()).toTypedArray().toHex().log("My sweet little array")
 ```
+
+### You can even choose big-endian or little-endian
+
+```kotlin
+listOf(1.toByte(), 2.toByte()).toTypedArray().toHexLittleEndian().log("My sweet little-endian array")
+```
