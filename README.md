@@ -45,7 +45,6 @@ logExecutionTime ("This is slow") {
     (0..100000).forEach { it.log("A number") }
 }
 ```
-```
 
 ## File utilities
 
@@ -55,7 +54,7 @@ logExecutionTime ("This is slow") {
 val downloadDir = getDownloadDirectory()
 ```
 
-### Simple APK programmatically installation
+### Simple APK installation
 
 ```kotlin
 File(getDownloadDirectory(), "BestApp.apk").installAPK(activity)
