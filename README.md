@@ -89,6 +89,7 @@ File("IsThisFileLegit.apk").md5()
 
 ```kotlin
 "@string/that_useful_string".getStringResourceByName(activity)
+```
 
 ## Binary utilities
 
