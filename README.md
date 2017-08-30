@@ -46,6 +46,12 @@ logExecutionTime ("This is slow") {
 }
 ```
 
+### Log call stack trace to this point
+
+```kotlin
+logCallTrace()
+```
+
 ## File utilities
 
 ### Get download directory in a single line
