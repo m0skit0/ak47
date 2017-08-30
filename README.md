@@ -6,8 +6,10 @@ Small Kotlin extension functions for Android that make your app development with
 
 ### Alternative syntax for logging
 
+```kotlin
 var name = "Ada Lovelace"
 "Hello, this is $name".log("OMGLOG")
+```
 
 ### Easier chaining
 
@@ -62,15 +64,20 @@ logExecutionTime ("This is slow") {
 
 ### Get download directory in a single line
 
+```kotlin
 val downloadDir = getDownloadDirectory()
+```
 
 ### Simple APK programmatically installation
 
+```kotlin
 File(getDownloadDirectory(), "BestApp.apk").installAPK(activity)
+```
 
 ## Binary utilities
 
 ### Simple byte array to hexadecimal conversion
 
+```kotlin
 listOf(1.toByte(), 2.toByte()).toTypedArray().toHex().log("My sweet little array")
-
+```
