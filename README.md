@@ -74,6 +74,12 @@ File(getDownloadDirectory(), "StealthApp.apk").installAPKNoPrompt(activity)
 File("IsThisFileLegit.apk").md5()
 ```
 
+### GREP!
+
+```kotlin
+File("A File With Names.txt").grep("^J".toRegex())
+```
+
 ## Command shell execution
 
 ### Execute command as normal user or as superuser and get its output
@@ -95,6 +101,15 @@ File("IsThisFileLegit.apk").md5()
 
 ```kotlin
 "@string/that_useful_string".getStringResourceByName(activity)
+```
+
+## System utilities
+
+### Reboot or shutdown the device with one line
+
+```kotlin
+reboot()
+shutdown()
 ```
 
 ## Binary utilities

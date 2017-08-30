@@ -54,3 +54,10 @@ fun getDownloadDirectory() = Environment.getExternalStoragePublicDirectory(Envir
  * @return MD5 hash of file as string.
  */
 fun File.md5() = "md5 $absolutePath".runCommand().substringBefore(' ')
+
+/**
+ * Return all lines that match the passed regular expression.
+ * @return List with all lines that match the regular expression
+ */
+fun File.grep(regex: Regex) =
+        readText().split("\n").filter { regex.containsMatchIn(it) }
