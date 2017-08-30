@@ -5,7 +5,7 @@ import android.util.Log.*
 import java.util.*
 import kotlin.system.measureTimeMillis
 
-private fun <T> T.asString() = when(this) {
+private fun <T> T.asString() = when (this) {
         is Array<*> -> Arrays.toString(this)
         else -> this.toString()
     }
@@ -74,5 +74,18 @@ fun logCallTrace() {
         throw IllegalStateException("logCallTrace")
     } catch (e: IllegalStateException) {
         Log.getStackTraceString(e).logDebug("logCallTrace")
+    }
+}
+
+/**
+ * Catches and logs any exception for this block and continue execution.
+ * Note that execution of block will exit on first statement that throws an exception.
+ * Exception is logged as ERROR level.
+ */
+inline fun ignoreErrors(block: () -> Unit) {
+    try {
+        block()
+    } catch (e: Exception) {
+        e.log("ignoreErrors")
     }
 }
