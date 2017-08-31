@@ -4,7 +4,7 @@ Small Kotlin extension functions for Android that make your app development with
 
 ## Logging utilities
 
-### Log any type directly with alternative syntax
+### Log debugs of any type with alternative syntax
 
 ```kotlin
 "Ada Lovelace".log("OMGLOG")
@@ -22,7 +22,16 @@ listOf("Ada", "Von Neumann", "Turing")
     .log("Filtered list")
 ```
 
-### Direct exception logging
+### Supports different logging levels
+
+```kotlin
+"Ada Lovelace".logDebug("OMGLOG")
+0.logInfo("INTLOG!")
+listOf("Ada", "Boole", "Dijkstra").logWarning("LISTLOG!")
+arrayOf("Ada", "Boole", "Dijkstra").logError("OMGARRAYSWORKTOO!")
+```
+
+### Direct exception logging with ERROR level
 
 ```kotlin
 try {
