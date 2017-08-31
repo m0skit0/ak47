@@ -4,11 +4,13 @@ Small Kotlin extension functions for Android that make your app development with
 
 ## Logging utilities
 
-### Alternative syntax for logging
+### Log any type directly with alternative syntax
 
 ```kotlin
-var name = "Ada Lovelace"
-"Hello, this is $name".log("OMGLOG")
+"Ada Lovelace".log("OMGLOG")
+0.log("INTLOG!")
+listOf("Ada", "Boole", "Dijkstra").log("LISTLOG!")
+arrayOf("Ada", "Boole", "Dijkstra").log("OMGARRAYSWORKTOO!")
 ```
 
 ### Easier chaining
