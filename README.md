@@ -41,6 +41,12 @@ try {
 }
 ```
 
+### Default tag value "LogUtils" for all log function extensions
+
+```kotlin
+"Ada Lovelace".log()
+```
+
 ### Log and ignore exceptions
 
 ```kotlin
@@ -53,6 +59,9 @@ ignoreErrors {
 
 ```kotlin
 logExecutionTime ("This is slow") {
+    (0..100000).forEach { it.log("A number") }
+}
+logExecutionTime {
     (0..100000).forEach { it.log("A number") }
 }
 ```

@@ -5,15 +5,21 @@ import android.util.Log.*
 import java.util.*
 import kotlin.system.measureTimeMillis
 
+private const val DEFAULT_TAG = "LogUtils"
+
 private fun <T> T.asString() = when (this) {
         is Array<*> -> Arrays.toString(this)
+        is ByteArray -> Arrays.toString(this)
+        is ShortArray -> Arrays.toString(this)
+        is IntArray -> Arrays.toString(this)
+        is LongArray -> Arrays.toString(this)
         else -> this.toString()
     }
 
 /**
  * Log this object as debug.
  */
-fun <T> T.logDebug(tag: String): T {
+fun <T> T.logDebug(tag: String = DEFAULT_TAG): T {
     d(tag, this.asString())
     return this
 }
@@ -26,7 +32,7 @@ fun <T> T.log(tag: String) = logDebug(tag)
 /**
  * Log this object as info.
  */
-fun <T> T.logInfo(tag: String): T {
+fun <T> T.logInfo(tag: String = DEFAULT_TAG): T {
     i(tag, this.asString())
     return this
 }
@@ -34,7 +40,7 @@ fun <T> T.logInfo(tag: String): T {
 /**
  * Log this object as warning.
  */
-fun <T> T.logWarning(tag: String): T {
+fun <T> T.logWarning(tag: String = DEFAULT_TAG): T {
     w(tag, this.asString())
     return this
 }
@@ -43,7 +49,7 @@ fun <T> T.logWarning(tag: String): T {
 /**
  * Log this object as error.
  */
-fun <T> T.logError(tag: String): T {
+fun <T> T.logError(tag: String = DEFAULT_TAG): T {
     e(tag, this.asString())
     return this
 }
@@ -51,7 +57,7 @@ fun <T> T.logError(tag: String): T {
 /**
  * Log stacktrace of exception as error
  */
-fun <T: Exception> T.log(tag: String): T {
+fun <T: Exception> T.log(tag: String = DEFAULT_TAG): T {
     getStackTraceString(this).logError(tag)
     return this
 }
@@ -59,7 +65,7 @@ fun <T: Exception> T.log(tag: String): T {
 /**
  * Executes block and logs execution time for it as debug.
  */
-inline fun logExecutionTime(tag: String, block: () -> Unit) {
+inline fun logExecutionTime(tag: String = "LogUtils", block: () -> Unit) {
     val time = measureTimeMillis {
         block()
     }
@@ -69,11 +75,11 @@ inline fun logExecutionTime(tag: String, block: () -> Unit) {
 /**
  * Logs the call stack trace as debug.
  */
-fun logCallTrace() {
+fun logCallTrace(tag: String = DEFAULT_TAG) {
     try {
         throw IllegalStateException("logCallTrace")
     } catch (e: IllegalStateException) {
-        Log.getStackTraceString(e).logDebug("logCallTrace")
+        Log.getStackTraceString(e).logDebug(tag)
     }
 }
 
