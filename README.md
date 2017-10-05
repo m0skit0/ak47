@@ -55,6 +55,10 @@ ignoreErrors {
 }
 ```
 
+### Integrated tag for all classes
+
+"Ada Lovelace".log(tag())
+
 ### Easier execution time logging
 
 ```kotlin

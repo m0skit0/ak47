@@ -90,3 +90,8 @@ inline fun ignoreErrors(block: () -> Unit) {
         e.log("ignoreErrors")
     }
 }
+
+/**
+ * Returns class name to use as logging tag.
+ */
+fun <T : Any> T.tag() = javaClass.simpleName
