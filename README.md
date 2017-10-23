@@ -76,6 +76,20 @@ logExecutionTime {
 logCallTrace()
 ```
 
+## Context utilities
+
+### Check permission extension with block support and no need to check for Android version
+
+activity.checkAllPermissions(setOf(CAMERA, WRITE_EXTERNAL_STORAGE)) {
+    // Execute if all permissions granted
+} ?: "Permissions not granted!".logWarning()
+
+### No need to check for Android version when requesting permissions
+
+```kotlin
+activity.requestPermissions(arrayOf(WRITE_EXTERNAL_STORAGE), 123456)
+```
+
 ## File utilities
 
 ### Get download directory in a single line
