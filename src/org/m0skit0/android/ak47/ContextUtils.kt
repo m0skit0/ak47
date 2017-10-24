@@ -8,20 +8,19 @@ import android.os.Build
 /**
  * Checks if all permissions are granted for Android M or higher.
  * If so, executes block and returns Any(). If not, directly returns null.
+ * If Android version is less than M, executes block and returns Any().
  * @param permissions Collection of permissions to check.
  * @param block Lambda expression to execute if all permissions granted.
  * @return Any() if block was executed, null otherwise.
  */
 inline fun Context.checkAllPermissions(permissions: Collection<String>, block: () -> Unit): Any? {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        return if (permissions.all { checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED }) {
-            block()
-            Any()
-        } else {
-            null
+        if (permissions.none { checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED }) {
+            return null
         }
     }
-    return null
+    block()
+    return Any()
 }
 
 /**
