@@ -57,16 +57,15 @@ ignoreErrors {
 
 ### Integrated tag for all classes
 
+```kotlin
 "Ada Lovelace".log(tag())
+```
 
 ### Easier execution time logging
 
 ```kotlin
-logExecutionTime ("This is slow") {
-    (0..100000).forEach { it.log("A number") }
-}
 logExecutionTime {
-    (0..100000).forEach { it.log("A number") }
+    (0..100_000).forEach { it.log("A number") }
 }
 ```
 
@@ -80,9 +79,11 @@ logCallTrace()
 
 ### Check permission extension with block support and no need to check for Android version
 
+```kotlin
 activity.checkAllPermissions(setOf(CAMERA, WRITE_EXTERNAL_STORAGE)) {
     // Execute if all permissions granted
 } ?: "Permissions not granted!".logWarning()
+```
 
 ### No need to check for Android version when requesting permissions
 

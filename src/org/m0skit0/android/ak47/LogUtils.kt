@@ -60,12 +60,14 @@ fun <T: Exception> T.log(tag: String = TAG) = apply {
 /**
  * Executes block and logs execution time for it as debug.
  */
-inline fun logExecutionTime(tag: String = "LogUtils", block: () -> Unit) {
+inline fun <T> logExecutionTime(tag: String = "LogUtils", block: () -> T?): T? {
+    var value: T? = null
     measureTimeMillis {
-        block()
-    }.run {
+        value = block()
+    }.apply {
         "$tag: $this".logDebug(tag)
     }
+    return value
 }
 
 /**
