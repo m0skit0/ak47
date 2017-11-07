@@ -26,8 +26,8 @@ inline fun Context.checkAllPermissions(permissions: Collection<String>, block: (
 /**
  * Wraps Activity#requestPermissions() with Android version check.
  */
-fun Activity.requestPermissions(permissions: Array<String>, requestCode: Int) {
+fun requestPermissions(activity: Activity, permissions: Array<String>, requestCode: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        requestPermissions(permissions, requestCode)
+        requestPermissions(activity, permissions, requestCode)
     }
 }
