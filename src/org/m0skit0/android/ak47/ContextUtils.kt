@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.widget.Toast
 
 /**
  * Checks if all permissions are granted for Android M or higher.
@@ -30,4 +31,20 @@ fun requestPermissions(activity: Activity, permissions: Array<String>, requestCo
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         requestPermissions(activity, permissions, requestCode)
     }
+}
+
+fun Context.toast(text: String) {
+    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+}
+
+fun Context.toast(id: Int) {
+    Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
+}
+
+fun Context.longToast(text: String) {
+    Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+}
+
+fun Context.longToast(id: Int) {
+    Toast.makeText(this, id, Toast.LENGTH_LONG).show()
 }

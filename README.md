@@ -119,6 +119,12 @@ File("IsThisFileLegit.apk").md5()
 File("A File With Names.txt").grep("^J".toRegex())
 ```
 
+## ifTrue/ifFalse
+
+```kotlin
+File("uselss file").delete().ifFalse { "Why I can't delete this useless file!".log() }
+```
+
 ## Command shell execution
 
 ### Execute command as normal user or as superuser and get its output
@@ -129,6 +135,13 @@ File("A File With Names.txt").grep("^J".toRegex())
 ```
 
 ## GUI and resources utilities
+
+### Simpler toasts
+
+```kotlin
+toast("Hello there!")
+longToast(R.string.translatedString)
+```
 
 ### Get a View by name
 
