@@ -2,6 +2,7 @@ package org.m0skit0.android.ak47
 
 import android.app.Activity
 import android.content.Context
+import android.view.View
 
 private val STRING_RESOURCE_IDENTIFIER_REGEX = "@string/(.*)".toRegex()
 
@@ -20,8 +21,8 @@ fun String.getStringResourceByName(context: Context): String {
  * @param activity Android Activity where the View is present.
  * @return View that has that name or null if no View found
  */
-fun String.findViewByName(activity: Activity) =
-        activity.findViewById(activity.resources.getIdentifier(this, "id", activity.packageName))
+fun <T: View> String.findViewByName(activity: Activity) =
+        activity.findViewById<T>(activity.resources.getIdentifier(this, "id", activity.packageName))
 
 private fun List<String>.runCommand() =
         Runtime.getRuntime().exec(toTypedArray()).apply { waitFor() }.inputStream.bufferedReader().readText()
