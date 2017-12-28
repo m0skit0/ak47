@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 
+
 private val STRING_RESOURCE_IDENTIFIER_REGEX = "@string/(.*)".toRegex()
 
 /**
@@ -23,26 +24,3 @@ fun String.getStringResourceByName(context: Context): String {
  */
 fun <T: View> String.findViewByName(activity: Activity) =
         activity.findViewById<T>(activity.resources.getIdentifier(this, "id", activity.packageName))
-
-private fun List<String>.runCommand() =
-        Runtime.getRuntime().exec(toTypedArray()).apply { waitFor() }.inputStream.bufferedReader().readText()
-
-/**
- * Executes command on shell and returns standard output.
- * @return Standard output of the command.
- */
-fun String.runCommand() =
-        Runtime.getRuntime().exec(this).apply { waitFor() }.inputStream.bufferedReader().readText()
-
-/**
- * Executes command on shell as root (superuser) and returns standard output.
- * NOTE: This call needs superuser privileges.
- * @return Standard output of the command.
- */
-fun String.runCommandAsSu() =
-        listOf("su", "-c", this).runCommand()
-
-
-
-
-

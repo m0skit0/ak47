@@ -8,13 +8,13 @@ import kotlin.system.measureTimeMillis
 private const val TAG = "LogUtils"
 
 private fun <T> T.asString() = when (this) {
-        is Array<*> -> Arrays.toString(this)
-        is ByteArray -> Arrays.toString(this)
-        is ShortArray -> Arrays.toString(this)
-        is IntArray -> Arrays.toString(this)
-        is LongArray -> Arrays.toString(this)
-        else -> this.toString()
-    }
+    is Array<*> -> Arrays.toString(this)
+    is ByteArray -> Arrays.toString(this)
+    is ShortArray -> Arrays.toString(this)
+    is IntArray -> Arrays.toString(this)
+    is LongArray -> Arrays.toString(this)
+    else -> this.toString()
+}
 
 /**
  * Log this object as debug.
@@ -70,6 +70,7 @@ inline fun <T> logExecutionTime(tag: String = "LogUtils", block: () -> T?): T? {
     return value
 }
 
+
 /**
  * Logs the call stack trace as debug.
  */
@@ -80,20 +81,3 @@ fun logCallTrace(tag: String = TAG) {
         Log.getStackTraceString(e).logDebug(tag)
     }
 }
-/**
- * Catches and logs any exception for this block and continue execution.
- * Note that execution of block will exit on first statement that throws an exception.
- * Exception is logged as ERROR level.
- */
-inline fun ignoreErrors(block: () -> Unit) {
-    try {
-        block()
-    } catch (e: Exception) {
-        e.log("ignoreErrors")
-    }
-}
-
-/**
- * Returns class name to use as logging tag.
- */
-fun <T : Any> T.tag() = javaClass.simpleName

@@ -2,7 +2,7 @@
 
 Small Kotlin extension functions for Android that make your app development with Kotlin more fun!
 
-## Logging utilities
+## Logging
 
 ### Log debugs of any type with alternative syntax
 
@@ -75,7 +75,7 @@ logExecutionTime {
 logCallTrace()
 ```
 
-## Context utilities
+## Context
 
 ### Check permission extension with block support and no need to check for Android version
 
@@ -90,13 +90,46 @@ activity.checkAllPermissions(setOf(CAMERA, WRITE_EXTERNAL_STORAGE)) {
 ```kotlin
 activity.requestPermissions(arrayOf(WRITE_EXTERNAL_STORAGE), 123456)
 ```
+## Dialog
 
-## File utilities
+### Progress dialog
 
-### Get download directory in a single line
+```kotlin
+activity.progressDialog(R.string.title) {
+    // Do your backgroud task 
+}
+```
+
+## Confirmation dialog (YES/NO)
+
+```kotlin
+activity.confirmationDialog(R.string.title, R.string.message) {
+    // Code to control OK
+}
+```
+
+## Single choice dialog (OK/CANCEL)
+
+```kotlin
+activity.singleChoiceDialog(R.string.title, listOf("Element 1", "Element 2"), R.string.notSelected) { selectedItem ->
+    // Do something with the selected String    
+}
+```
+
+## File
+
+### Get Android default directories in a simpler way
 
 ```kotlin
 val downloadDir = getDownloadDirectory()
+val picturesDir = getPictureDirectory()
+```
+
+### Get file images directly as Bitmap and Drawables
+
+```kotlin
+File(getPictureDirectory(), "image.png").asBitmap()
+File(getPictureDirectory(), "image.png").asDrawable()
 ```
 
 ### Simple APK installation
@@ -119,13 +152,15 @@ File("IsThisFileLegit.apk").md5()
 File("A File With Names.txt").grep("^J".toRegex())
 ```
 
-## ifTrue/ifFalse
+## Control
+
+### ifTrue/ifFalse
 
 ```kotlin
 File("uselss file").delete().ifFalse { "Why I can't delete this useless file!".log() }
 ```
 
-## Command shell execution
+## Shell
 
 ### Execute command as normal user or as superuser and get its output
 
@@ -134,13 +169,27 @@ File("uselss file").delete().ifFalse { "Why I can't delete this useless file!".l
 "ls -l /system".runCommandAsSu()
 ```
 
-## GUI and resources utilities
+## GUI and resources
 
 ### Simpler toasts
 
 ```kotlin
 toast("Hello there!")
 longToast(R.string.translatedString)
+```
+
+### Simpler View animations
+
+```kotlin
+findViewByName(R.id.myView).doAnimation(R.anim.myAnimation)
+```
+
+### Some premade View animations (contributions are welcome!)
+
+```kotlin
+findViewByName(R.id.myView).slideUp()
+findViewByName(R.id.myView).slideDown()
+findViewByName(R.id.myView).shake()
 ```
 
 ### Get a View by name
@@ -172,8 +221,9 @@ shutdown()
 listOf(1.toByte(), 2.toByte()).toTypedArray().toHex().log("My sweet little array")
 ```
 
-### You can even choose big-endian or little-endian
+### Base64 extension functions
 
 ```kotlin
-listOf(1.toByte(), 2.toByte()).toTypedArray().toHexLittleEndian().log("My sweet little-endian array")
+val byteArray = base64String.decode()
+val base64String = byteArray.encode()
 ```
