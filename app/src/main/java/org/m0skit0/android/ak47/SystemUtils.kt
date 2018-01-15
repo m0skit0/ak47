@@ -30,10 +30,10 @@ fun reboot() {
     "reboot".runCommand()
 }
 
-internal inline fun Boolean.ifTrue(block: () -> Unit) = apply {
+inline fun Boolean.ifTrue(block: () -> Unit) = apply {
     if (this) block()
 }
 
-internal inline fun Boolean.ifFalse(block: () -> Unit) = apply {
+inline fun Boolean.ifFalse(block: () -> Unit) = apply {
     if (!this) block()
 }

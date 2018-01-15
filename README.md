@@ -77,6 +77,14 @@ logCallTrace()
 
 ## Context
 
+### Run on UI thread from anywhere you have a context and not only an Activity
+
+```kotlin
+context.runOnUiThread {
+    // Do your fancy GUI stuff here
+}
+```
+
 ### Check permission extension with block support and no need to check for Android version
 
 ```kotlin
@@ -121,8 +129,8 @@ activity.singleChoiceDialog(R.string.title, listOf("Element 1", "Element 2"), R.
 ### Get Android default directories in a simpler way
 
 ```kotlin
-val downloadDir = getDownloadDirectory()
-val picturesDir = getPictureDirectory()
+val downloadDir = defaultDownloadDirectory
+val picturesDir = defaultPicturesDirectory
 ```
 
 ### Get file images directly as Bitmap and Drawables
@@ -174,22 +182,29 @@ File("uselss file").delete().ifFalse { "Why I can't delete this useless file!".l
 ### Simpler toasts
 
 ```kotlin
-toast("Hello there!")
 longToast(R.string.translatedString)
+toast("Hello there!") // Avoid this, you really should always use resources
 ```
 
 ### Simpler View animations
 
 ```kotlin
-findViewByName(R.id.myView).doAnimation(R.anim.myAnimation)
+myView.doAnimation(R.anim.myAnimation)
 ```
 
 ### Some premade View animations (contributions are welcome!)
 
 ```kotlin
-findViewByName(R.id.myView).slideUp()
-findViewByName(R.id.myView).slideDown()
-findViewByName(R.id.myView).shake()
+myView.slideUp()
+myView.slideDown()
+myView.shake()
+```
+
+### Convert an image ByteArray to Bitmap or Drawable directly
+
+```kotlin
+byteArray.toBitmap()
+byteArray.toDrawable()
 ```
 
 ### Get a View by name

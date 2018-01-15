@@ -9,6 +9,17 @@ import android.os.Build
 import android.os.Environment
 import java.io.File
 
+
+/**
+ * Returns standard Android download public directory.
+ */
+val defaultDownloadDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+
+/**
+ * Returns directory where attendance photos are stored.
+ */
+val defaultPicturesDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+
 /**
  * Installs file as APK. Asks for user permission.
  */
@@ -73,20 +84,6 @@ fun File.copyToAsSu(destination: File): File {
     "busybox cp ${this.absolutePath} ${destination.absolutePath}".runCommandAsSu()
     return destination
 }
-
-/**
- * Returns object instance stored in this file represented as YAML serialization
- */
-
-/**
- * Returns standard Android download public directory.
- */
-fun getDownloadDirectory() = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-
-/**
- * Returns directory where attendance photos are stored.
- */
-fun getPictureDirectory() = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
 
 /**
  * Returns image file as Bitmap

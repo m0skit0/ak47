@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Handler
 import android.widget.Toast
 
 /**
@@ -16,7 +17,7 @@ import android.widget.Toast
  */
 inline fun Context.checkAllPermissions(permissions: Collection<String>, block: () -> Unit): Any? {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        if (permissions.none { checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED }) {
+        (permissions.none { checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED }).ifTrue {
             return null
         }
     }
@@ -47,4 +48,11 @@ fun Context.longToast(text: String) {
 
 fun Context.longToast(id: Int) {
     Toast.makeText(this, id, Toast.LENGTH_LONG).show()
+}
+
+/**
+ * Run on UI thread from everywhere you have a Context instance.
+ */
+fun Context.runOnUiThread(block: () -> Any?) {
+    Handler(mainLooper).run { post { block() } }
 }
