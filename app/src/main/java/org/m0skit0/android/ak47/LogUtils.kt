@@ -70,7 +70,6 @@ inline fun <T> logExecutionTime(tag: String = "LogUtils", block: () -> T?): T? {
     return value
 }
 
-
 /**
  * Logs the call stack trace as debug.
  */
@@ -79,5 +78,18 @@ fun logCallTrace(tag: String = TAG) {
         throw IllegalStateException()
     } catch (e: IllegalStateException) {
         Log.getStackTraceString(e).logDebug(tag)
+    }
+}
+
+/**
+ * Catches and logs any exception for this block and continue execution.
+ * Note that execution of block will exit on first statement that throws an exception.
+ * Exception is logged as ERROR level.
+ */
+inline fun ignoreErrors(block: () -> Unit) {
+    try {
+        block()
+    } catch (e: Exception) {
+        e("ignoreErrors", Log.getStackTraceString(e))
     }
 }
