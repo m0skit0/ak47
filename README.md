@@ -98,7 +98,7 @@ activity.checkAllPermissions(setOf(CAMERA, WRITE_EXTERNAL_STORAGE)) {
 ```kotlin
 activity.requestPermissions(arrayOf(WRITE_EXTERNAL_STORAGE), 123456)
 ```
-## Dialog
+## GUI
 
 ### Progress dialog
 
@@ -122,6 +122,54 @@ activity.confirmationDialog(R.string.title, R.string.message) {
 activity.singleChoiceDialog(R.string.title, listOf("Element 1", "Element 2"), R.string.notSelected) { selectedItem ->
     // Do something with the selected String    
 }
+```
+
+### Simpler toasts
+
+```kotlin
+longToast(R.string.translatedString)
+toast("Hello there!") // Avoid this, you really should always use resources
+```
+
+### Simpler View animations
+
+```kotlin
+myView.doAnimation(R.anim.myAnimation)
+```
+
+### Some premade View animations (contributions are welcome!)
+
+```kotlin
+myView.slideUp()
+myView.slideDown()
+myView.shake()
+```
+
+### Convert an image ByteArray to Bitmap or Drawable directly
+
+```kotlin
+byteArray.toBitmap()
+byteArray.toDrawable()
+```
+
+### Get a View by name
+
+```kotlin
+"tvName".findViewByName(activity)
+```
+
+### Get a String resource by name
+
+```kotlin
+"@string/that_useful_string".getStringResourceByName(activity)
+```
+
+### Simpler visibility
+
+```kotlin
+myView.visible()
+myView.invisible()
+myView.gone()
 ```
 
 ## File
@@ -175,48 +223,6 @@ File("uselss file").delete().ifFalse { "Why I can't delete this useless file!".l
 ```kotlin
 "ls -l /data".runCommand()
 "ls -l /system".runCommandAsSu()
-```
-
-## GUI and resources
-
-### Simpler toasts
-
-```kotlin
-longToast(R.string.translatedString)
-toast("Hello there!") // Avoid this, you really should always use resources
-```
-
-### Simpler View animations
-
-```kotlin
-myView.doAnimation(R.anim.myAnimation)
-```
-
-### Some premade View animations (contributions are welcome!)
-
-```kotlin
-myView.slideUp()
-myView.slideDown()
-myView.shake()
-```
-
-### Convert an image ByteArray to Bitmap or Drawable directly
-
-```kotlin
-byteArray.toBitmap()
-byteArray.toDrawable()
-```
-
-### Get a View by name
-
-```kotlin
-"tvName".findViewByName(activity)
-```
-
-### Get a String resource by name
-
-```kotlin
-"@string/that_useful_string".getStringResourceByName(activity)
 ```
 
 ## System utilities
