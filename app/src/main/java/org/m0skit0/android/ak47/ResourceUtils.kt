@@ -2,6 +2,7 @@ package org.m0skit0.android.ak47
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
 import android.view.View
 
 
@@ -24,3 +25,9 @@ fun String.getStringResourceByName(context: Context): String {
  */
 fun <T: View> String.findViewByName(activity: Activity) =
         activity.findViewById<T>(activity.resources.getIdentifier(this, "id", activity.packageName))
+
+/**
+ * Returns a new map with the contents of the Bundle. This is useful specially for logging.
+ * @return Map that mirrors the Bundle.
+ */
+fun Bundle.toMap() = keySet().associate { it to get(it) }
