@@ -1,5 +1,8 @@
 package org.m0skit0.android.ak47
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 private fun List<String>.runCommand() = Runtime.getRuntime().exec(toTypedArray()).apply { waitFor() }.inputStream.bufferedReader().readText()
 
@@ -37,3 +40,10 @@ inline fun Boolean.ifTrue(block: () -> Unit) = apply {
 inline fun Boolean.ifFalse(block: () -> Unit) = apply {
     if (!this) block()
 }
+
+/**
+ * Returns the date formatted according to the passed format.
+ * @param format Format to be used as specified by DateFormat.
+ * @return Formatted date according to passed string format.
+ */
+fun Date.format(format: String) = SimpleDateFormat(format, Locale.US).format(this)

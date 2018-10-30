@@ -1,8 +1,10 @@
 package org.m0skit0.android.ak47
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.util.Base64
+import java.io.ByteArrayOutputStream
 
 private val HEX_CHARS = "0123456789ABCDEF".toCharArray()
 
@@ -45,3 +47,11 @@ fun ByteArray.asBitmap() = BitmapFactory.decodeByteArray(this, 0, size)
  * Convert ByteArray to Drawable
  */
 fun ByteArray.asDrawable() = BitmapDrawable(asBitmap())
+
+/**
+ * Returns PNG with quality 50 from a Bitmap.
+ */
+fun Bitmap.toPNG() = ByteArrayOutputStream().use { bos ->
+    compress(Bitmap.CompressFormat.PNG, 50, bos)
+    bos.toByteArray()
+}

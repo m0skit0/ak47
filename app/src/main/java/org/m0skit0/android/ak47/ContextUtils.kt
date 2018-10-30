@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import android.os.Handler
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 
 /**
@@ -51,8 +51,15 @@ fun Context.longToast(id: Int) {
 }
 
 /**
- * Run on UI thread from everywhere you have a Context instance.
+ * Close keyboard
  */
-fun Context.runOnUiThread(block: () -> Any?) {
-    Handler(mainLooper).run { post { block() } }
+fun Activity.closeKeyboard() {
+    currentFocus?.run { (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(windowToken, 0) }
+}
+
+/**
+ * Open keyboard
+ */
+fun Activity.openKeyboard() {
+    currentFocus?.run { (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInputFromWindow(windowToken, InputMethodManager.SHOW_FORCED,0) }
 }

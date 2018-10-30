@@ -53,8 +53,8 @@ fun Context.confirmationDialog(title: Int, message: Int, cancel: () -> Unit = {}
                 .setTitle(title)
                 .setMessage(message)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.yes, {_, _ -> ok() } )
-                .setNegativeButton(android.R.string.no, {_, _ -> cancel() } )
+                .setPositiveButton(android.R.string.yes) { _, _ -> ok() }
+                .setNegativeButton(android.R.string.no) { _, _ -> cancel() }
                 .show()
 
 /**
@@ -68,16 +68,16 @@ fun Context.confirmationDialog(title: Int, message: Int, cancel: () -> Unit = {}
 fun Activity.singleChoiceDialog(title: Int, elements: List<String>, notSelectedMessage: Int, cancel: () -> Unit = {}, ok: (String) -> Unit) =
         AlertDialog.Builder(this)
                 .setTitle(title)
-                .setNegativeButton(android.R.string.cancel, {_, _ -> cancel() } )
+                .setNegativeButton(android.R.string.cancel) { _, _ -> cancel() }
                 .apply {
                     var checkedItem = -1
-                    setSingleChoiceItems(elements.toTypedArray(), -1, { _, which -> checkedItem = which })
-                    setPositiveButton(android.R.string.ok, {_, _ ->
+                    setSingleChoiceItems(elements.toTypedArray(), -1) { _, which -> checkedItem = which }
+                    setPositiveButton(android.R.string.ok) { _, _ ->
                         if (checkedItem == -1) {
                             toast(notSelectedMessage)
                         } else {
                             ok(elements[checkedItem])
                         }
-                    })
+                    }
                 }
                 .show()

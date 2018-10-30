@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import java.io.Serializable
 
 
 private val STRING_RESOURCE_IDENTIFIER_REGEX = "@string/(.*)".toRegex()
@@ -31,3 +32,24 @@ fun <T: View> String.findViewByName(activity: Activity) =
  * @return Map that mirrors the Bundle.
  */
 fun Bundle.toMap() = keySet().associate { it to get(it) }
+
+/**
+ * Returns a Bundle from a map.
+ * @return Bundle that mirrors the map
+ */
+fun Map<String, Any>.toBundle() = Bundle().apply {
+    keys.forEach { key ->
+        this@toBundle[key].let { value ->
+            when (value) {
+                is String -> putString(key, value)
+                is Int -> putInt(key, value)
+                is Float -> putFloat(key, value)
+                is Double -> putDouble(key, value)
+                is Boolean -> putBoolean(key, value)
+                is ByteArray -> putByteArray(key, value)
+                is Serializable -> putSerializable(key, value)
+                else -> throw IllegalArgumentException("Unsupported value of type ${value?.javaClass}")
+            }
+        }
+    }
+}

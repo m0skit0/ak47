@@ -77,14 +77,6 @@ logCallTrace()
 
 ## Context
 
-### Run on UI thread from anywhere you have a context and not only an Activity
-
-```kotlin
-context.runOnUiThread {
-    // Do your fancy GUI stuff here
-}
-```
-
 ### Check permission extension with block support and no need to check for Android version
 
 ```kotlin
@@ -98,6 +90,7 @@ activity.checkAllPermissions(setOf(CAMERA, WRITE_EXTERNAL_STORAGE)) {
 ```kotlin
 activity.requestPermissions(arrayOf(WRITE_EXTERNAL_STORAGE), 123456)
 ```
+
 ## GUI
 
 ### Progress dialog
@@ -108,7 +101,7 @@ activity.progressDialog(R.string.title) {
 }
 ```
 
-## Confirmation dialog (YES/NO)
+### Confirmation dialog (YES/NO)
 
 ```kotlin
 activity.confirmationDialog(R.string.title, R.string.message) {
@@ -116,7 +109,7 @@ activity.confirmationDialog(R.string.title, R.string.message) {
 }
 ```
 
-## Single choice dialog (OK/CANCEL)
+### Single choice dialog (OK/CANCEL)
 
 ```kotlin
 activity.singleChoiceDialog(R.string.title, listOf("Element 1", "Element 2"), R.string.notSelected) { selectedItem ->
@@ -129,6 +122,12 @@ activity.singleChoiceDialog(R.string.title, listOf("Element 1", "Element 2"), R.
 ```kotlin
 longToast(R.string.translatedString)
 toast("Hello there!") // Avoid this, you really should always use resources
+```
+
+### View visibility extensions
+
+```kotlin
+myView.invisible()
 ```
 
 ### Simpler View animations
@@ -152,16 +151,16 @@ byteArray.toBitmap()
 byteArray.toDrawable()
 ```
 
+### Convert a Bitmap to a PNG
+
+```kotlin
+myBitmap.toPNG()
+```
+
 ### Get a View by name
 
 ```kotlin
 "tvName".findViewByName(activity)
-```
-
-### Get a String resource by name
-
-```kotlin
-"@string/that_useful_string".getStringResourceByName(activity)
 ```
 
 ### Simpler visibility
@@ -172,7 +171,43 @@ myView.invisible()
 myView.gone()
 ```
 
-## File
+### Software keyboard
+
+```kotlin
+closeKeyboard()
+showKeyboard()
+```
+
+### Easy set text to EditText
+
+```kotlin
+myEditText.textString = "Simpler than setText(text, TextView.BufferType.NORMAL)"
+```
+
+## Resources
+
+### Get a String resource by name
+
+```kotlin
+"@string/that_useful_string".getStringResourceByName(activity)
+```
+
+### Convert Bundle into Map and viceversa
+
+```kotlin
+myBundle.toMap()
+myMap.toBundle()
+```
+
+## Date and time
+
+### Straightforward simple date formatting
+
+```kotlin
+Date().format("MM/dd/yyyy")
+```
+
+## Files
 
 ### Get Android default directories in a simpler way
 

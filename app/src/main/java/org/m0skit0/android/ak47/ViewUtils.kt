@@ -4,6 +4,8 @@ import android.view.View
 import android.view.View.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.EditText
+import android.widget.TextView
 
 /////
 // Animations
@@ -29,3 +31,14 @@ fun View.visible() = apply { visibility = VISIBLE }
 fun View.invisible() = apply { visibility = INVISIBLE }
 
 fun View.gone() = apply { visibility = GONE }
+
+/**
+ * Simpler set/get text for EditTexts.
+ * BufferType is set to NORMAL
+ */
+var EditText.textString: String
+    get() = text.toString()
+    set(value) {
+        setText(value, TextView.BufferType.NORMAL)
+    }
+
