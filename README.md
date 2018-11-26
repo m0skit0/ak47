@@ -2,79 +2,6 @@
 
 Small Kotlin extension functions for Android that make your app development with Kotlin more fun!
 
-## Logging
-
-### Log debugs of any type with alternative syntax
-
-```kotlin
-"Ada Lovelace".log("OMGLOG")
-0.log("INTLOG!")
-listOf("Ada", "Boole", "Dijkstra").log("LISTLOG!")
-arrayOf("Ada", "Boole", "Dijkstra").log("OMGARRAYSWORKTOO!")
-```
-
-### Easier chaining
-
-```kotlin
-listOf("Ada", "Von Neumann", "Turing")
-    .log("Original list")
-    .filter { it.contains("a") }
-    .log("Filtered list")
-```
-
-### Supports different logging levels
-
-```kotlin
-"Ada Lovelace".logDebug("OMGLOG")
-0.logInfo("INTLOG!")
-listOf("Ada", "Boole", "Dijkstra").logWarning("LISTLOG!")
-arrayOf("Ada", "Boole", "Dijkstra").logError("OMGARRAYSWORKTOO!")
-```
-
-### Direct exception logging with ERROR level
-
-```kotlin
-try {
-    throw Exception("Something nasty happened")
-} catch (e: Exception) {
-    e.log("Your exception tag")
-}
-```
-
-### Default tag value "LogUtils" for all log function extensions
-
-```kotlin
-"Ada Lovelace".log()
-```
-
-### Log and ignore exceptions
-
-```kotlin
-ignoreErrors {
-    throw IOException("File not found!")
-}
-```
-
-### Integrated tag for all classes
-
-```kotlin
-"Ada Lovelace".log(tag())
-```
-
-### Easier execution time logging
-
-```kotlin
-logExecutionTime {
-    (0..100_000).forEach { it.log("A number") }
-}
-```
-
-### Log call stack trace to this point
-
-```kotlin
-logCallTrace()
-```
-
 ## Context
 
 ### Check permission extension with block support and no need to check for Android version
@@ -89,6 +16,12 @@ activity.checkAllPermissions(setOf(CAMERA, WRITE_EXTERNAL_STORAGE)) {
 
 ```kotlin
 activity.requestPermissions(arrayOf(WRITE_EXTERNAL_STORAGE), 123456)
+```
+
+### Simpler system services
+
+```kotlin
+context.getAlarmManager()
 ```
 
 ## GUI
@@ -249,6 +182,73 @@ File("A File With Names.txt").grep("^J".toRegex())
 
 ```kotlin
 File("uselss file").delete().ifFalse { "Why I can't delete this useless file!".log() }
+```
+
+## Logging
+
+### Log debugs of any type with alternative syntax
+
+```kotlin
+"Ada Lovelace".log("OMGLOG")
+0.log("INTLOG!")
+listOf("Ada", "Boole", "Dijkstra").log("LISTLOG!")
+arrayOf("Ada", "Boole", "Dijkstra").log("OMGARRAYSWORKTOO!")
+```
+
+### Easier chaining
+
+```kotlin
+listOf("Ada", "Von Neumann", "Turing")
+    .log("Original list")
+    .filter { it.contains("a") }
+    .log("Filtered list")
+```
+
+### Supports different logging levels
+
+```kotlin
+"Ada Lovelace".logDebug("OMGLOG")
+0.logInfo("INTLOG!")
+listOf("Ada", "Boole", "Dijkstra").logWarning("LISTLOG!")
+arrayOf("Ada", "Boole", "Dijkstra").logError("OMGARRAYSWORKTOO!")
+```
+
+### Direct exception logging with ERROR level
+
+```kotlin
+try {
+    throw Exception("Something nasty happened")
+} catch (e: Exception) {
+    e.log("Your exception tag")
+}
+```
+
+### Default tag value "LogUtils" for all log function extensions
+
+```kotlin
+"Ada Lovelace".log()
+```
+
+### Log and ignore exceptions
+
+```kotlin
+ignoreErrors {
+    throw IOException("File not found!")
+}
+```
+
+### Easier execution time logging
+
+```kotlin
+logExecutionTime {
+    (0..100_000).forEach { it.log("A number") }
+}
+```
+
+### Log call stack trace to this point
+
+```kotlin
+logCallTrace()
 ```
 
 ## Shell
