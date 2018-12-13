@@ -1,7 +1,9 @@
 package org.m0skit0.android.ak47
 
 import android.app.Activity
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.view.inputmethod.InputMethodManager
@@ -62,4 +64,14 @@ fun Activity.closeKeyboard() {
  */
 fun Activity.openKeyboard() {
     currentFocus?.run { (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInputFromWindow(windowToken, InputMethodManager.SHOW_FORCED,0) }
+}
+
+/**
+ * Creates an instance of an anonymous BroadcastReceiver.
+ * @param block Lambda to be executed when intent is received.
+ */
+fun broadcastReceiver(block: (Context, Intent) -> Unit) = object : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+        block(context, intent)
+    }
 }

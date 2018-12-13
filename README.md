@@ -24,6 +24,12 @@ activity.requestPermissions(arrayOf(WRITE_EXTERNAL_STORAGE), 123456)
 context.getAlarmManager()
 ```
 
+### BroadcastReceiver lambdas
+
+```kotlin
+context.registerReceiver(broadcastReceiver { context, intent -> intent.log() }, IntentFilter("Action Filter!"))
+```
+
 ## GUI
 
 ### Progress dialog
