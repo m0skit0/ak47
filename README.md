@@ -63,24 +63,14 @@ longToast(R.string.translatedString)
 toast("Hello there!") // Avoid this, you really should always use resources
 ```
 
-### View visibility extensions
+### View extensions
 
 ```kotlin
 myView.invisible()
-```
-
-### Simpler View animations
-
-```kotlin
+myView.disable()
+myViewGroup.disableChildren()
 myView.doAnimation(R.anim.myAnimation)
-```
-
-### Some premade View animations (contributions are welcome!)
-
-```kotlin
 myView.slideUp()
-myView.slideDown()
-myView.shake()
 ```
 
 ### Convert an image ByteArray to Bitmap or Drawable directly
@@ -100,14 +90,6 @@ myBitmap.toPNG()
 
 ```kotlin
 "tvName".findViewByName(activity)
-```
-
-### Simpler visibility
-
-```kotlin
-myView.visible()
-myView.invisible()
-myView.gone()
 ```
 
 ### Software keyboard

@@ -79,5 +79,4 @@ fun Activity.singleChoiceDialog(title: Int, elements: List<String>, notSelectedM
                             ok(elements[checkedItem])
                         }
                     }
-                }
-                .show()
+                }.show()

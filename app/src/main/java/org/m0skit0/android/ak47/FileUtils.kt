@@ -24,8 +24,9 @@ val defaultPicturesDirectory = Environment.getExternalStoragePublicDirectory(Env
  * Installs file as APK. Asks for user permission.
  */
 fun File.installAPK(context: Context): File {
-    val intent = Intent(Intent.ACTION_INSTALL_PACKAGE)
-    intent.data = Uri.fromFile(this)
+    val intent = Intent(Intent.ACTION_INSTALL_PACKAGE).apply {
+        data = Uri.fromFile(this@installAPK)
+    }
     context.startActivity(intent)
     return this
 }
@@ -62,13 +63,12 @@ fun File.forceMkdir() {
  * Installs file as system APK without asking permission. Requires root permissions.
  * Depending on the Android version, it might require a reboot.
  */
-fun File.installSystemAPK(): File {
-    return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP ) {
-        this.installSystemAPKLowerThanLollipop()
+fun File.installSystemAPK(): File =
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP ) {
+        installSystemAPKLowerThanLollipop()
     } else {
-        this.installSystemAPKLollipopOrHigher()
+        installSystemAPKLollipopOrHigher()
     }
-}
 
 /**
  * File MD5 hash.

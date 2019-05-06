@@ -67,10 +67,13 @@ fun Context.getTelephonyManager() = getSystemService(Context.TELEPHONY_SERVICE) 
 fun Context.getLocationManager() = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 fun Context.getConnectivityManager() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 fun Context.getNFCManager() = getSystemService(Context.NFC_SERVICE) as NfcManager
+
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 fun Context.getBatteryManager() = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
+
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 fun Context.getCameraManager() = getSystemService(Context.CAMERA_SERVICE) as CameraManager
+
 fun Context.getWifiManager() = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
 
 
