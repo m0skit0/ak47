@@ -67,7 +67,7 @@ fun Activity.openKeyboard() {
 }
 
 /**
- * Creates an instance of an anonymous BroadcastReceiver.
+ * Creates an instance of an anonymous BroadcastReceiver with lambda.
  * @param block Lambda to be executed when intent is received.
  */
 fun broadcastReceiver(block: (Context, Intent) -> Unit) = object : BroadcastReceiver() {

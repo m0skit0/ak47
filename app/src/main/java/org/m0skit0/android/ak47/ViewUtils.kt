@@ -17,9 +17,9 @@ fun View.doAnimation(animationId: Int, preAnimation: (Animation) -> Unit) = appl
     }
 }
 
-fun View.slideUp(preAnimation: (Animation) -> Unit = {}) = doAnimation(R.anim.slide_up, preAnimation)
-fun View.slideDown(preAnimation: (Animation) -> Unit = {}) = doAnimation(R.anim.slide_down, preAnimation)
-fun View.shake(preAnimation: (Animation) -> Unit = {}) = doAnimation(R.anim.shake, preAnimation)
+fun View.slideUp(preAnimation: (Animation) -> Unit = {}): View = doAnimation(R.anim.slide_up, preAnimation)
+fun View.slideDown(preAnimation: (Animation) -> Unit = {}): View = doAnimation(R.anim.slide_down, preAnimation)
+fun View.shake(preAnimation: (Animation) -> Unit = {}): View = doAnimation(R.anim.shake, preAnimation)
 
 
 // Visibility
@@ -33,8 +33,7 @@ fun View.disable() = apply { isEnabled = false }
 
 private fun ViewGroup.enableDisableChildren(enable: Boolean): ViewGroup = apply {
     (0 until childCount).forEach {
-        val view = getChildAt(it)
-        when (view) {
+        when (val view = getChildAt(it)) {
             is ViewGroup -> view.enableDisableChildren(enable)
             else -> if (enable) view.enable() else view.disable()
         }
@@ -43,7 +42,6 @@ private fun ViewGroup.enableDisableChildren(enable: Boolean): ViewGroup = apply 
 
 fun ViewGroup.disableChildren() = enableDisableChildren(false)
 fun ViewGroup.enableChildren() = enableDisableChildren(true)
-
 
 /**
  * Simpler set/get text for EditTexts.

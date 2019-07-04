@@ -24,20 +24,20 @@ fun String.getStringResourceByName(context: Context): String {
  * @param activity Android Activity where the View is present.
  * @return View that has that name or null if no View found
  */
-fun <T: View> String.findViewByName(activity: Activity) =
-        activity.findViewById<T>(activity.resources.getIdentifier(this, "id", activity.packageName))
+fun <T: View> String.findViewByName(activity: Activity): T =
+        activity.findViewById(activity.resources.getIdentifier(this, "id", activity.packageName))
 
 /**
  * Returns a new map with the contents of the Bundle. This is useful specially for logging.
  * @return Map that mirrors the Bundle.
  */
-fun Bundle.toMap() = keySet().associate { it to get(it) }
+fun Bundle.toMap(): Map<String, Any?> = keySet().associate { it to get(it) }
 
 /**
  * Returns a Bundle from a map.
  * @return Bundle that mirrors the map
  */
-fun Map<String, Any>.toBundle() = Bundle().apply {
+fun Map<String, Any>.toBundle(): Bundle = Bundle().apply {
     keys.forEach { key ->
         this@toBundle[key].let { value ->
             when (value) {

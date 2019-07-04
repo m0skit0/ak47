@@ -11,47 +11,29 @@ private val HEX_CHARS = "0123456789ABCDEF".toCharArray()
 /**
  * Returns hexadecimal string representation of this byte array
  */
-fun Array<Byte>.toHex() = joinToString(separator = "") { it.toInt().let {
+fun Array<Byte>.toHex(): String = joinToString(separator = "") { it.toInt().let {
         "${HEX_CHARS[(it and 0xF0).ushr(4)]}${HEX_CHARS[it and 0x0F]}"
     }.let {
         if (it.length == 1) "0$it" else it
     }
 }
 
-fun Array<Byte>.toHexLittleEndian() = apply { reverse() }.toHex()
-fun Array<Byte>.toHexBigEndian() = toHex()
+fun Array<Byte>.toHexLittleEndian(): String = apply { reverse() }.toHex()
+fun Array<Byte>.toHexBigEndian(): String = toHex()
 
 /**
  * Returns hexadecimal string representation of this ByteArray
  */
-fun ByteArray.toHex() = toTypedArray().toHex()
-fun ByteArray.toHexLittleEndian() = toTypedArray().toHexLittleEndian()
-fun ByteArray.toHexBigEndian() = toHex()
+fun ByteArray.toHex(): String = toTypedArray().toHex()
+fun ByteArray.toHexLittleEndian(): String = toTypedArray().toHexLittleEndian()
+fun ByteArray.toHexBigEndian(): String = toHex()
 
 /**
  * Decode Base64 string to ByteArray
  */
-fun String.decode() = Base64.decode(this, Base64.DEFAULT)
+fun String.decode(): ByteArray = Base64.decode(this, Base64.NO_WRAP)
 
 /**
  * Encode ByteArray to Base64 string
  */
-fun ByteArray.encode() = Base64.encodeToString(this, Base64.DEFAULT)
-
-/**
- * Convert ByteArray to Bitmap
- */
-fun ByteArray.asBitmap() = BitmapFactory.decodeByteArray(this, 0, size)
-
-/**
- * Convert ByteArray to Drawable
- */
-fun ByteArray.asDrawable() = BitmapDrawable(asBitmap())
-
-/**
- * Returns PNG with quality 50 from a Bitmap.
- */
-fun Bitmap.toPNG() = ByteArrayOutputStream().use { bos ->
-    compress(Bitmap.CompressFormat.PNG, 50, bos)
-    bos.toByteArray()
-}
+fun ByteArray.encode(): String = Base64.encodeToString(this, Base64.NO_WRAP)

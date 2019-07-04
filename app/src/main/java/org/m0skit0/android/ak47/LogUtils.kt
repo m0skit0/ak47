@@ -77,7 +77,7 @@ fun logCallTrace(tag: String = TAG) {
     try {
         throw IllegalStateException()
     } catch (e: IllegalStateException) {
-        Log.getStackTraceString(e).logDebug(tag)
+        getStackTraceString(e).logDebug(tag)
     }
 }
 
@@ -90,6 +90,6 @@ inline fun ignoreErrors(block: () -> Unit) {
     try {
         block()
     } catch (e: Exception) {
-        e("ignoreErrors", Log.getStackTraceString(e))
+        e.log()
     }
 }
